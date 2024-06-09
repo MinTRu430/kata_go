@@ -41,9 +41,23 @@ func stringToInt(s string) {
 
 }
 
+func normalizeInput(input string) string {
+	input = strings.ReplaceAll(input, "+", " + ")
+	input = strings.ReplaceAll(input, "-", " - ")
+	input = strings.ReplaceAll(input, "*", " * ")
+	input = strings.ReplaceAll(input, "/", " / ")
+	input = strings.TrimSpace(input)
+	return strings.Join(strings.Fields(input), " ")
+}
+
 func main() {
 	reader := bufio.NewReader(os.Stdin)
-	input, _ := reader.ReadString('\n')
-	input = strings.TrimSpace(input)
-	stringToInt(input)
+	i := 0
+	for {
+		i++
+		fmt.Printf("Пример %d:\n", i)
+		input, _ := reader.ReadString('\n')
+
+		stringToInt(normalizeInput(input))
+	}
 }
