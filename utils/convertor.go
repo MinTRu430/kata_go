@@ -1,7 +1,5 @@
 package utils
 
-import "strconv"
-
 var romanNumber = map[byte]int{
 	'I': 1,
 	'V': 5,
@@ -18,11 +16,6 @@ type arabicNumber struct {
 func RomanToInt(s string) int {
 	total := 0
 	prevValue := 0
-
-	_, err := strconv.Atoi(s)
-	if err == nil {
-		panic("Выдача паники, так как используются одновременно разные системы счисления.")
-	}
 
 	for i := len(s) - 1; i >= 0; i-- {
 		value := romanNumber[s[i]]

@@ -19,8 +19,13 @@ func IsDigit(s string) (int, bool) {
 var romanNumeralPattern = regexp.MustCompile("^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$")
 
 func IsRomanDigit(s string) (int, bool) {
+	_, err := strconv.Atoi(s)
+	if err == nil {
+		panic("Выдача паники, так как используются одновременно разные системы счисления.")
+	}
+
 	if !romanNumeralPattern.MatchString(s) {
-		panic("паника неправильный ввод римских символов")
+		panic("Выдача паники, так как в римской системе нет отрицательных чисел. Результатом работы калькулятора с римскими числами могут быть только положительные числа, если результат работы меньше единицы, программа должна выдать панику.")
 	}
 
 	num := RomanToInt(s)
