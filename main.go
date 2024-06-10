@@ -28,6 +28,9 @@ func stringToInt(s string) {
 	} else if r1, ok := utils.IsRomanDigit(num1); ok {
 		if r2, ok := utils.IsRomanDigit(num2); ok {
 			result := utils.Calculation(r1, r2, operator)
+			if result <= 0 {
+				panic("Выдача паники, так как в римской системе нет отрицательных чисел. Результатом работы калькулятора с римскими числами могут быть только положительные числа, если результат работы меньше единицы, программа должна выдать панику.")
+			}
 			fmt.Println(utils.IntToRoman(result))
 		}
 	} else {
